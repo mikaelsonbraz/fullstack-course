@@ -5,10 +5,12 @@ import com.mikaelsonbraz.serviceOrder.domain.person.Technician;
 import com.mikaelsonbraz.serviceOrder.domain.serviceOrder.enums.PriorityLevel;
 import com.mikaelsonbraz.serviceOrder.domain.serviceOrder.enums.Status;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class ServiceOrder {
+public class ServiceOrder implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Integer id;
     private LocalDateTime openingDate;

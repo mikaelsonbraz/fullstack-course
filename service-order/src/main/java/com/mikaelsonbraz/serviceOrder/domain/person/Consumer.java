@@ -1,6 +1,9 @@
 package com.mikaelsonbraz.serviceOrder.domain.person;
 
-public class Consumer extends Person{
+import java.io.Serializable;
+
+public class Consumer extends Person implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public Consumer() {
     }
