@@ -1,24 +1,36 @@
 package com.mikaelsonbraz.serviceOrder.domain.serviceOrder;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mikaelsonbraz.serviceOrder.domain.person.Consumer;
 import com.mikaelsonbraz.serviceOrder.domain.person.Technician;
 import com.mikaelsonbraz.serviceOrder.domain.serviceOrder.enums.PriorityLevel;
 import com.mikaelsonbraz.serviceOrder.domain.serviceOrder.enums.Status;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
 public class ServiceOrder implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime openingDate;
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime closingDate;
     private Integer priorityLevel;
     private String comments;
     private Integer status;
+
+    @ManyToOne
+    @JoinColumn(name = "technician_id")
     private Technician technician;
+    @ManyToOne
+    @JoinColumn(name = "consumer_id")
     private Consumer consumer;
 
     public ServiceOrder() {
