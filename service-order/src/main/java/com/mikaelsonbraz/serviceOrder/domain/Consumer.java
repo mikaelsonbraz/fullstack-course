@@ -1,4 +1,4 @@
-package com.mikaelsonbraz.serviceorder.domain;
+package com.mikaelsonbraz.serviceOrder.domain;
 
 public class Consumer extends Person{
 

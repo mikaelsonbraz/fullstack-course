@@ -1,4 +1,4 @@
-package com.mikaelsonbraz.serviceorder;
+package com.mikaelsonbraz.serviceOrder;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
