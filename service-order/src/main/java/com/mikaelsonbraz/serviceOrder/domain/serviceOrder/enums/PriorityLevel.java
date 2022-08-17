@@ -1,4 +1,4 @@
-package com.mikaelsonbraz.serviceOrder.domain.enums;
+package com.mikaelsonbraz.serviceOrder.domain.serviceOrder.enums;
 
 public enum PriorityLevel {
 
