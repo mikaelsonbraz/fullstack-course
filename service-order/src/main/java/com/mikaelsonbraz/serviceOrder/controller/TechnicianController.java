@@ -1,6 +1,7 @@
 package com.mikaelsonbraz.serviceOrder.controller;
 
 import com.mikaelsonbraz.serviceOrder.domain.person.Technician;
+import com.mikaelsonbraz.serviceOrder.dto.person.TechnicianDTO;
 import com.mikaelsonbraz.serviceOrder.service.TechnicianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,8 @@ public class TechnicianController {
     TechnicianService technicianService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Technician> findByID(@PathVariable Integer id){
-        return ResponseEntity.ok().body(technicianService.findById(id));
+    public ResponseEntity<TechnicianDTO> findByID(@PathVariable Integer id){
+        TechnicianDTO technicianDTO = new TechnicianDTO(technicianService.findById(id));
+        return ResponseEntity.ok().body(technicianDTO);
     }
 }
