@@ -1,5 +1,6 @@
 package com.mikaelsonbraz.serviceOrder.domain.person;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mikaelsonbraz.serviceOrder.domain.serviceOrder.ServiceOrder;
 
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import java.util.List;
 public class Technician extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "technician")
     private List<ServiceOrder> serviceOrderList = new ArrayList<>();
 
