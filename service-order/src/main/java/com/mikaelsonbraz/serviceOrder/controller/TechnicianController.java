@@ -5,10 +5,12 @@ import com.mikaelsonbraz.serviceOrder.dto.person.TechnicianDTO;
 import com.mikaelsonbraz.serviceOrder.service.TechnicianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/technicians")
@@ -21,5 +23,23 @@ public class TechnicianController {
     public ResponseEntity<TechnicianDTO> findByID(@PathVariable Integer id){
         TechnicianDTO technicianDTO = new TechnicianDTO(technicianService.findById(id));
         return ResponseEntity.ok().body(technicianDTO);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<TechnicianDTO>> getAll(){
+        List<TechnicianDTO> allTechnicians = new ArrayList<>();
+        for(Technician x : technicianService.getAll()){
+            allTechnicians.add(new TechnicianDTO(x));
+        }
+        return ResponseEntity.ok().body(allTechnicians);
+    }
+
+    @PostMapping
+    public ResponseEntity<TechnicianDTO> create(@RequestBody TechnicianDTO technicianDTO){
+        TechnicianDTO technicianDTOsaved = new TechnicianDTO(technicianService.create(technicianDTO));
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(technicianDTOsaved.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 }
