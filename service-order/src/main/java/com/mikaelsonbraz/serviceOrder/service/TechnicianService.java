@@ -3,7 +3,7 @@ package com.mikaelsonbraz.serviceOrder.service;
 import com.mikaelsonbraz.serviceOrder.domain.person.Technician;
 import com.mikaelsonbraz.serviceOrder.dto.person.TechnicianDTO;
 import com.mikaelsonbraz.serviceOrder.repository.TechnicianRepository;
-import com.mikaelsonbraz.serviceOrder.service.exception.DuplicateCpfExcecption;
+import com.mikaelsonbraz.serviceOrder.service.exception.DuplicatedCpfExcecption;
 import com.mikaelsonbraz.serviceOrder.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class TechnicianService {
 
     public Technician create(TechnicianDTO technicianDTO){
         if(duplicatedCPF(technicianDTO)){
-            throw new DuplicateCpfExcecption("Duplicated CPF! " + technicianDTO.getCpf());
+            throw new DuplicatedCpfExcecption("Duplicated CPF! " + technicianDTO.getCpf());
         }
         return technicianRepository.save(new Technician(null, technicianDTO.getName(), technicianDTO.getCpf(), technicianDTO.getPhone()));
     }

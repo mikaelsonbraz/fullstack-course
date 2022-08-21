@@ -3,15 +3,20 @@ package com.mikaelsonbraz.serviceOrder.dto.person;
 import com.mikaelsonbraz.serviceOrder.domain.person.Technician;
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 public class TechnicianDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+
+    @NotEmpty(message = "Name field is required!")
     private String name;
     @CPF
+    @NotEmpty(message = "CPF field is required!")
     private String cpf;
+    @NotEmpty(message = "Phone field is required!")
     private String phone;
 
     public TechnicianDTO() {
