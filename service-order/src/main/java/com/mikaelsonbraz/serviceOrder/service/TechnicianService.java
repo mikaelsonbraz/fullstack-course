@@ -1,7 +1,9 @@
 package com.mikaelsonbraz.serviceOrder.service;
 
+import com.mikaelsonbraz.serviceOrder.domain.person.Person;
 import com.mikaelsonbraz.serviceOrder.domain.person.Technician;
 import com.mikaelsonbraz.serviceOrder.dto.person.TechnicianDTO;
+import com.mikaelsonbraz.serviceOrder.repository.PersonRepository;
 import com.mikaelsonbraz.serviceOrder.repository.TechnicianRepository;
 import com.mikaelsonbraz.serviceOrder.service.exception.DuplicatedCpfExcecption;
 import com.mikaelsonbraz.serviceOrder.service.exception.ObjectNotFoundException;
@@ -18,6 +20,9 @@ public class TechnicianService {
 
     @Autowired
     TechnicianRepository technicianRepository;
+
+    @Autowired
+    PersonRepository personRepository;
 
     public Technician findById(Integer id){
         Optional<Technician> technician = technicianRepository.findById(id);
@@ -59,11 +64,11 @@ public class TechnicianService {
     }
 
     private boolean duplicatedCPF(TechnicianDTO technicianDTO){
-        return technicianRepository.existsByCpf(technicianDTO.getCpf());
+        return personRepository.existsByCpf(technicianDTO.getCpf());
     }
 
-    private Technician findByCpf(TechnicianDTO technicianDTO){
+    private Person findByCpf(TechnicianDTO technicianDTO){
 
-        return technicianRepository.findByCpf(technicianDTO.getCpf());
+        return personRepository.findByCpf(technicianDTO.getCpf());
     }
 }
