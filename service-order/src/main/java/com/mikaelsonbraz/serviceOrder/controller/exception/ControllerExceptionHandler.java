@@ -26,7 +26,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationError> methodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException){
-        ValidationError validationError = new ValidationError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Validaating fields error!");
+        ValidationError validationError = new ValidationError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Validating fields error!");
 
         for(FieldError error : methodArgumentNotValidException.getBindingResult().getFieldErrors()){
             validationError.addErrors(error.getField(), error.getDefaultMessage());
