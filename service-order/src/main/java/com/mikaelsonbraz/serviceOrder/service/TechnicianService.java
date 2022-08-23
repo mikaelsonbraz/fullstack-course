@@ -53,7 +53,7 @@ public class TechnicianService {
     public void delete(Integer id){
         Technician technician = findById(id);
         if (technician.getServiceOrderList().size() > 0){
-            throw new DataIntegrityViolationException("The id " + id + " technician has service orders");
+            throw new DataIntegrityViolationException("The id " + id + " technician has service orders, delete method unavailable");
         }
         technicianRepository.delete(technician);
     }
