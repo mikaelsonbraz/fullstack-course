@@ -43,4 +43,11 @@ public class TechnicianController {
 
         return ResponseEntity.created(uri).build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TechnicianDTO> update(@PathVariable Integer id, @Valid @RequestBody TechnicianDTO technicianDTO){
+        TechnicianDTO technicianDTOUpdated = new TechnicianDTO(technicianService.update(id, technicianDTO));
+
+        return ResponseEntity.ok().body(technicianDTOUpdated);
+    }
 }

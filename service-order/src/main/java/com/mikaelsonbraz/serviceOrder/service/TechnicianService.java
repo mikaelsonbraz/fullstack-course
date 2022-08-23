@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -34,7 +35,26 @@ public class TechnicianService {
         return technicianRepository.save(new Technician(null, technicianDTO.getName(), technicianDTO.getCpf(), technicianDTO.getPhone()));
     }
 
+    public Technician update(Integer id, TechnicianDTO technicianDTO){
+        Technician technicianToUpdate = findById(id);
+
+        if(duplicatedCPF(technicianDTO) && !Objects.equals(findByCpf(technicianDTO).getId(), id)){
+            throw new DuplicatedCpfExcecption("Duplicated CPF! " + technicianDTO.getCpf());
+        }
+
+        technicianToUpdate.setName(technicianDTO.getName());
+        technicianToUpdate.setCpf(technicianDTO.getCpf());
+        technicianToUpdate.setPhone(technicianDTO.getPhone());
+
+        return technicianRepository.save(technicianToUpdate);
+    }
+
     private boolean duplicatedCPF(TechnicianDTO technicianDTO){
         return technicianRepository.existsByCpf(technicianDTO.getCpf());
+    }
+
+    private Technician findByCpf(TechnicianDTO technicianDTO){
+
+        return technicianRepository.findByCpf(technicianDTO.getCpf());
     }
 }
