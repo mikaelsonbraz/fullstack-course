@@ -50,4 +50,10 @@ public class TechnicianController {
 
         return ResponseEntity.ok().body(technicianDTOUpdated);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        technicianService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

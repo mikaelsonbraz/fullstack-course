@@ -6,6 +6,7 @@ import com.mikaelsonbraz.serviceOrder.repository.TechnicianRepository;
 import com.mikaelsonbraz.serviceOrder.service.exception.DuplicatedCpfExcecption;
 import com.mikaelsonbraz.serviceOrder.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +48,14 @@ public class TechnicianService {
         technicianToUpdate.setPhone(technicianDTO.getPhone());
 
         return technicianRepository.save(technicianToUpdate);
+    }
+
+    public void delete(Integer id){
+        Technician technician = findById(id);
+        if (technician.getServiceOrderList().size() > 0){
+            throw new DataIntegrityViolationException("The id " + id + " technician has service orders");
+        }
+        technicianRepository.delete(technician);
     }
 
     private boolean duplicatedCPF(TechnicianDTO technicianDTO){

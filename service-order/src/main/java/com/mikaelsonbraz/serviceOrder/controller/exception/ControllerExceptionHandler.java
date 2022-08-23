@@ -2,6 +2,7 @@ package com.mikaelsonbraz.serviceOrder.controller.exception;
 
 import com.mikaelsonbraz.serviceOrder.service.exception.DuplicatedCpfExcecption;
 import com.mikaelsonbraz.serviceOrder.service.exception.ObjectNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
