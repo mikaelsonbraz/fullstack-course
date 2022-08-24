@@ -16,13 +16,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class TechnicianService {
+public class TechnicianService extends PersonService{
 
     @Autowired
     TechnicianRepository technicianRepository;
-
-    @Autowired
-    PersonRepository personRepository;
 
     public Technician findById(Integer id){
         Optional<Technician> technician = technicianRepository.findById(id);
@@ -35,7 +32,7 @@ public class TechnicianService {
     }
 
     public Technician create(TechnicianDTO technicianDTO){
-        if(duplicatedCPF(technicianDTO)){
+        if(duplicatedCPF(technicianDTO.getCpf())){
             throw new DuplicatedCpfExcecption("Duplicated CPF! " + technicianDTO.getCpf());
         }
         return technicianRepository.save(new Technician(null, technicianDTO.getName(), technicianDTO.getCpf(), technicianDTO.getPhone()));
@@ -44,7 +41,7 @@ public class TechnicianService {
     public Technician update(Integer id, TechnicianDTO technicianDTO){
         Technician technicianToUpdate = findById(id);
 
-        if(duplicatedCPF(technicianDTO) && !Objects.equals(findByCpf(technicianDTO).getId(), id)){
+        if(duplicatedCPF(technicianDTO.getCpf()) && !Objects.equals(findByCpf(technicianDTO.getCpf()).getId(), id)){
             throw new DuplicatedCpfExcecption("Duplicated CPF! " + technicianDTO.getCpf());
         }
 
@@ -61,14 +58,5 @@ public class TechnicianService {
             throw new DataIntegrityViolationException("The id " + id + " technician has service orders, delete method unavailable");
         }
         technicianRepository.delete(technician);
-    }
-
-    private boolean duplicatedCPF(TechnicianDTO technicianDTO){
-        return personRepository.existsByCpf(technicianDTO.getCpf());
-    }
-
-    private Person findByCpf(TechnicianDTO technicianDTO){
-
-        return personRepository.findByCpf(technicianDTO.getCpf());
     }
 }
