@@ -1,9 +1,8 @@
-package com.mikaelsonbraz.serviceOrder.service;
+package com.mikaelsonbraz.serviceOrder.service.personService;
 
 import com.mikaelsonbraz.serviceOrder.domain.person.Consumer;
 import com.mikaelsonbraz.serviceOrder.dto.person.ConsumerDTO;
 import com.mikaelsonbraz.serviceOrder.repository.ConsumerRepository;
-import com.mikaelsonbraz.serviceOrder.repository.PersonRepository;
 import com.mikaelsonbraz.serviceOrder.service.exception.DuplicatedCpfExcecption;
 import com.mikaelsonbraz.serviceOrder.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

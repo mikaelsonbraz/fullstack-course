@@ -1,4 +1,4 @@
-package com.mikaelsonbraz.serviceOrder.service;
+package com.mikaelsonbraz.serviceOrder.service.personService;
 
 import com.mikaelsonbraz.serviceOrder.domain.person.Person;
 import com.mikaelsonbraz.serviceOrder.dto.person.TechnicianDTO;

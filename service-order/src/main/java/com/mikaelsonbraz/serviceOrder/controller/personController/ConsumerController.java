@@ -1,8 +1,8 @@
-package com.mikaelsonbraz.serviceOrder.controller;
+package com.mikaelsonbraz.serviceOrder.controller.personController;
 
 import com.mikaelsonbraz.serviceOrder.domain.person.Consumer;
 import com.mikaelsonbraz.serviceOrder.dto.person.ConsumerDTO;
-import com.mikaelsonbraz.serviceOrder.service.ConsumerService;
+import com.mikaelsonbraz.serviceOrder.service.personService.ConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

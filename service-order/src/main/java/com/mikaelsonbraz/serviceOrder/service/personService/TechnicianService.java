@@ -1,9 +1,7 @@
-package com.mikaelsonbraz.serviceOrder.service;
+package com.mikaelsonbraz.serviceOrder.service.personService;
 
-import com.mikaelsonbraz.serviceOrder.domain.person.Person;
 import com.mikaelsonbraz.serviceOrder.domain.person.Technician;
 import com.mikaelsonbraz.serviceOrder.dto.person.TechnicianDTO;
-import com.mikaelsonbraz.serviceOrder.repository.PersonRepository;
 import com.mikaelsonbraz.serviceOrder.repository.TechnicianRepository;
 import com.mikaelsonbraz.serviceOrder.service.exception.DuplicatedCpfExcecption;
 import com.mikaelsonbraz.serviceOrder.service.exception.ObjectNotFoundException;
