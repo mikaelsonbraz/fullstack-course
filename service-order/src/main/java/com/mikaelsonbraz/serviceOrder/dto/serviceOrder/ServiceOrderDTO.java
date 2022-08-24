@@ -3,6 +3,7 @@ package com.mikaelsonbraz.serviceOrder.dto.serviceOrder;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mikaelsonbraz.serviceOrder.domain.serviceOrder.ServiceOrder;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -15,6 +16,7 @@ public class ServiceOrderDTO implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime closingDate;
     private Integer priorityLevel;
+    @NotEmpty(message = "Comments field is required!")
     private String comments;
     private Integer status;
     private Integer technician;

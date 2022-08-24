@@ -5,11 +5,11 @@ import com.mikaelsonbraz.serviceOrder.dto.serviceOrder.ServiceOrderDTO;
 import com.mikaelsonbraz.serviceOrder.service.serviceOrderService.ServiceOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,5 +33,14 @@ public class ServiceOrderController {
             allServiceOrders.add(new ServiceOrderDTO(x));
         }
         return ResponseEntity.ok().body(allServiceOrders);
+    }
+
+    @PostMapping
+    public ResponseEntity<ServiceOrderDTO> create(@Valid @RequestBody ServiceOrderDTO serviceOrderDTO){
+        ServiceOrderDTO serviceOrderDTOsaved = new ServiceOrderDTO(serviceOrderService.create(serviceOrderDTO));
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(serviceOrderDTOsaved.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 }
