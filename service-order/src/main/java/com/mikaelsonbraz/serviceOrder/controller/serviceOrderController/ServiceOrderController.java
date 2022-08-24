@@ -43,4 +43,12 @@ public class ServiceOrderController {
 
         return ResponseEntity.created(uri).build();
     }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ServiceOrderDTO> update(@PathVariable Integer id, @Valid @RequestBody ServiceOrderDTO serviceOrderDTO){
+        ServiceOrderDTO serviceOrderDTO1updated = new ServiceOrderDTO(serviceOrderService.update(id, serviceOrderDTO));
+
+        return ResponseEntity.ok().body(serviceOrderDTO1updated);
+    }
 }

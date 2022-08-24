@@ -13,6 +13,7 @@ import com.mikaelsonbraz.serviceOrder.service.personService.TechnicianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +48,24 @@ public class ServiceOrderService {
                 Status.toEnum(serviceOrderDTO.getStatus()),
                 technician,
                 consumer);
+
+        return serviceOrderRepository.save(serviceOrder);
+    }
+
+    public ServiceOrder update(Integer id, ServiceOrderDTO serviceOrderDTO){
+        ServiceOrder serviceOrder = findById(id);
+        Technician technician = technicianService.findById(serviceOrderDTO.getTechnician());
+        Consumer consumer = consumerService.findById(serviceOrderDTO.getConsumer());
+
+        serviceOrder.setPriorityLevel(PriorityLevel.toEnum(serviceOrderDTO.getPriorityLevel()));
+        serviceOrder.setStatus(Status.toEnum(serviceOrderDTO.getStatus()));
+        serviceOrder.setComments(serviceOrderDTO.getComments());
+        serviceOrder.setTechnician(technician);
+        serviceOrder.setConsumer(consumer);
+
+        if (serviceOrder.getStatus().getCode() == 2){
+            serviceOrder.setClosingDate(LocalDateTime.now());
+        }
 
         return serviceOrderRepository.save(serviceOrder);
     }
