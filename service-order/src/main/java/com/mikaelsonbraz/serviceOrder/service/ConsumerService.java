@@ -55,7 +55,7 @@ public class ConsumerService extends PersonService{
     public void delete(@PathVariable Integer id){
         Consumer consumer = findById(id);
         if(consumer.getRequestOrderServiceList().size() > 0){
-            throw new DataIntegrityViolationException("The id " + id + " consumer has service orders unfinished, dedlete method unavailable");
+            throw new DataIntegrityViolationException("The id " + id + " consumer has service orders unfinished, delete method unavailable");
         }
         consumerRepository.delete(consumer);
     }
