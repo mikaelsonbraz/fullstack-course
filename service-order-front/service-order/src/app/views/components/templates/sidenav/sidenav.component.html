@@ -8,7 +8,7 @@
               <i class="material-icons">work</i>Tecnico
             </a>
             <a mat-list-item routerLink="/">
-            <i class="material-icons">person_search</i>Cliente
+              <i class="material-icons">person_search</i>Cliente
             </a>
             <a mat-list-item routerLink="/">
               <i class="material-icons">person_pin</i>Ordens de Serviço
@@ -20,6 +20,7 @@
       <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>more_vert</mat-icon>
       </button>
+      <router-outlet></router-outlet>
     </div>
   
   </mat-drawer-container>

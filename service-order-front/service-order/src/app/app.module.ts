@@ -23,13 +23,15 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HeaderComponent } from './views/components/templates/header/header.component';
 import { FooterComponent } from './views/components/templates/footer/footer.component';
 import { SidenavComponent } from './views/components/templates/sidenav/sidenav.component';
+import { HomeComponent } from './views/components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    SidenavComponent
+    SidenavComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
